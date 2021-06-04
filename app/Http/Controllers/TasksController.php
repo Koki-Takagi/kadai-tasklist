@@ -51,6 +51,7 @@ class TasksController extends Controller
     {
         // バリデーション
         $request->validate([
+            'title' => 'required|max:255',   // 追加
             'content' => 'required|max:255',
         ]);
         // メッセージを作成
