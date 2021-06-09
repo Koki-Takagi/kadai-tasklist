@@ -62,8 +62,8 @@ class TasksController extends Controller
         
                 // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
         $request->user()->tasks()->create([
-            'content' => $request->content,
             'status' => $request->status,
+            'content' => $request->content,
         ]);
 
         // 前のURLへリダイレクトさせる
@@ -88,6 +88,7 @@ class TasksController extends Controller
     // getでtasks/idにアクセスされた場合の「取得表示処理」
     public function show($id)
     {
+        if (\Auth::check()){
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
 
@@ -95,6 +96,11 @@ class TasksController extends Controller
         return view('tasks.show', [
             'task' => $task,
         ]);
+        }
+        else
+        {
+            return reirect('/');
+        }
     }
 
     /**
