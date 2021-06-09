@@ -99,7 +99,7 @@ class TasksController extends Controller
         }
         else
         {
-            return reirect('/');
+            return redirect('/');
         }
     }
 
