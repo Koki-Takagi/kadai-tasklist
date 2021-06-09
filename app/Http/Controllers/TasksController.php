@@ -88,9 +88,9 @@ class TasksController extends Controller
     // getでtasks/idにアクセスされた場合の「取得表示処理」
     public function show($id)
     {
+         $task = Task::findOrFail($id);
          if (\Auth::id() === $task->user_id){
         // idの値でメッセージを検索して取得
-        $task = Task::findOrFail($id);
 
         // メッセージ詳細ビューでそれを表示
         return view('tasks.show', [
